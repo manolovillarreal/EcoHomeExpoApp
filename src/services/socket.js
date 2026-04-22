@@ -17,6 +17,6 @@ export function requestPrivateHistory(socket, userId) {
   socket.emit('private-history', { userId });
 }
 
-export function sendPrivateMessage(socket, toUserId, text) {
-  socket.emit('private-message', { toUserId, text });
+export function sendPrivateMessage(socket, toUserId, toUsername, text) {
+  socket.emit('private-message', { toUserId, toUsername, text });
 }

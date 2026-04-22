@@ -385,7 +385,10 @@ export default function ChatScreen() {
       return;
     }
 
-    setActiveRoom({ type: 'private', userId: String(userId) });
+    const user = privateConversations.find((c) => String(c.userId) === String(userId));
+    const username = user?.username || user?.name || null;
+
+    setActiveRoom({ type: 'private', userId: String(userId), username });
     setDrawerVisible(false);
 
     if (socketRef.current) {
@@ -405,7 +408,7 @@ export default function ChatScreen() {
         return;
       }
 
-      sendPrivateMessage(socketRef.current, activeRoom.userId, text);
+      sendPrivateMessage(socketRef.current, activeRoom.userId, activeRoom.username ?? null, text);
       loadConversations().catch(() => {});
     } else {
       sendGlobalMessage(socketRef.current, text);
