@@ -23,7 +23,6 @@
     },
     "web": {
       "output": "static",
-      "baseUrl": "/EcoHomeExpoApp",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -42,6 +41,7 @@
       ]
     ],
     "experiments": {
+      "baseUrl": "/EcoHomeExpoApp",
       "typedRoutes": true,
       "reactCompiler": true
     },
