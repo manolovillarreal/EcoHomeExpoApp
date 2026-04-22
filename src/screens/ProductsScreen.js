@@ -3,7 +3,10 @@ import { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
   RefreshControl,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -140,13 +143,18 @@ export default function ProductsScreen() {
   );
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.safeArea}>
+      <KeyboardAvoidingView
+        style={styles.screen}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
       <ScrollView
         contentContainerStyle={[
           styles.scrollContent,
           isDesktop && styles.scrollContentDesktop,
           isTablet && styles.scrollContentTablet,
         ]}
+        keyboardShouldPersistTaps="handled"
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -300,18 +308,22 @@ export default function ProductsScreen() {
           />
         </View>
       ) : null}
-    </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  safeArea: {
     flex: 1,
     backgroundColor: colors.background,
   },
+  screen: {
+    flex: 1,
+  },
   scrollContent: {
     paddingHorizontal: spacing[2],
-    paddingTop: spacing[2],
+    paddingTop: spacing[3],
     paddingBottom: 112,
   },
   scrollContentTablet: {

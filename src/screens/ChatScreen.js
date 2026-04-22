@@ -1,6 +1,6 @@
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, SafeAreaView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import AppCard from '../components/AppCard';
 import ChatHeader from '../components/ChatHeader';
@@ -429,6 +429,10 @@ export default function ChatScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <KeyboardAvoidingView
+        style={styles.keyboardView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
       <View style={styles.screen}>
         {isDesktop ? <View style={styles.sidebarDesktop}>{sidebar}</View> : null}
 
@@ -481,6 +485,7 @@ export default function ChatScreen() {
           </MobileDrawer>
         ) : null}
       </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
@@ -489,6 +494,9 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  keyboardView: {
+    flex: 1,
   },
   screen: {
     flex: 1,

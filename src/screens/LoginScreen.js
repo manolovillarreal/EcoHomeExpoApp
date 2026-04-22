@@ -83,7 +83,7 @@ export default function LoginScreen() {
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
         style={[styles.keyboardView, isMobileLayout && styles.keyboardViewMobile]}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View
           style={[
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     minHeight: 240,
     borderRadius: 0,
     marginBottom: 20,
-    paddingTop: 40,
+    paddingTop: 56,
   },
   infoEyebrow: {
     fontSize: 13,

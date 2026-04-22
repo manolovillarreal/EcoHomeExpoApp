@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 import AppButton from './AppButton';
 import { colors, spacing } from '../theme/designSystem';
@@ -11,25 +11,23 @@ export default function MessageInput({
   disabled,
 }) {
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <View style={styles.wrapper}>
-        <TextInput
-          value={value}
-          onChangeText={onChangeText}
-          placeholder={placeholder}
-          placeholderTextColor={colors.textSoft}
-          style={styles.input}
-          multiline
-          editable={!disabled}
-        />
-        <AppButton
-          label="Enviar"
-          onPress={onSend}
-          disabled={disabled || !value.trim()}
-          style={styles.button}
-        />
-      </View>
-    </KeyboardAvoidingView>
+    <View style={styles.wrapper}>
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor={colors.textSoft}
+        style={styles.input}
+        multiline
+        editable={!disabled}
+      />
+      <AppButton
+        label="Enviar"
+        onPress={onSend}
+        disabled={disabled || !value.trim()}
+        style={styles.button}
+      />
+    </View>
   );
 }
 
